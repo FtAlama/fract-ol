@@ -26,7 +26,12 @@ int	out_prog(t_frac *data)
 	return (0);
 }
 
+<<<<<<< HEAD:mlx_event.c
 int	key_event(int keycode, t_frac *data)
+=======
+//test 
+int	key_event(int keycode, t_data *data)
+>>>>>>> ee17ee66a933c60e6aa5aeadfb1e5316753f20b8:fractol_utils.c
 {
 	if (keycode == 53)
 		out_prog(data);
