@@ -12,34 +12,32 @@
 
 #include "fractol.h"
 
-int	out_prog(t_frac *data)
+int	out_prog(t_fract *data)
 {
-	if ()
-	mlx_destroy_image(data->mlx, data->img.ptr_img);
-	mlx_clear_window(data->mlx, data->win);
-	mlx_destroy_window(data->mlx, data->win);
-	free(data->mlx);
-	free(data);
+	if (data->img.ptr_img)
+		mlx_destroy_image(data->mlx, data->img.ptr_img);
+	if (data->win)
+		mlx_clear_window(data->mlx, data->win);
+	if (data->mlx)
+	{
+		mlx_destroy_window(data->mlx, data->win);
+		free(data->mlx);
+	}
 	if (data->err_out == 0)
 		exit(EXIT_SUCCESS);
 	exit(EXIT_FAILURE);
 	return (0);
 }
 
-<<<<<<< HEAD:mlx_event.c
-int	key_event(int keycode, t_frac *data)
-=======
-//test 
-int	key_event(int keycode, t_data *data)
->>>>>>> ee17ee66a933c60e6aa5aeadfb1e5316753f20b8:fractol_utils.c
+int	key_event(int keycode, t_fract *data)
 {
 	if (keycode == 53)
 		out_prog(data);
 	return (0);
 }
 
-void	events_init(t_fract frac)
+void	events_init(t_fract *frac)
 {
-
+	
 
 }

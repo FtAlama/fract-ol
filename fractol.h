@@ -41,12 +41,12 @@ typedef struct s_fract
 	int		err_out;
 }	t_fract;
 
-int		out_prog(t_frac *data);
-int		key_event(int keycode, t_frac *data);
-int		mouse_event(int button, int x, int y, t_frac *data);
+int		out_prog(t_fract *data);
+int		key_event(int keycode, t_fract *data);
+int		mouse_event(int button, int x, int y, t_fract *data);
 int		ft_strncmp(char *s1, char *s2, int size);
 void	ft_putstr(char *str);
-void	events_init(t_fract frac);
-void	data_init(t_fract frac);
+void	events_init(t_fract *frac);
+void	data_init(t_fract *frac);
 
 #endif

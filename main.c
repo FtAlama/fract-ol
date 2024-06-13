@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-void	set_image(t_data *data)
+void	set_image(t_fract *data)
 {
 
 }
@@ -20,7 +20,7 @@ void	set_image(t_data *data)
 void	fract_init(t_fract *frac)
 {
 	frac->mlx = mlx_init();
-	frac->err_out = 1;
+	frac->err_out = 0;
 	if (!frac->mlx)
 	{
 		frac->err_out = 1;
@@ -29,17 +29,18 @@ void	fract_init(t_fract *frac)
 	frac->win = mlx_new_window(frac->mlx, WIDTH, HEIGHT, frac->name);
 	if (!frac->win)
 	{
-		frac->err_out = 0;
+		frac->err_out = 1;
 		out_prog(frac);
 	}
 	frac->img.ptr_img = mlx_new_image(frac->mlx, WIDTH, HEIGHT);
 	if (!frac->img.ptr_img)
 	{
-		frac->err_out = 0;
+		frac->err_out = 1;
 		out_prog(frac);
 	}
 	frac->img.pixels_ptr = mlx_get_data_addr(frac->img.ptr_img,
 											&frac->img.bits_pp,
+											&frac->img.line_len,
 											&frac->img.endian);
 	events_init(frac);
 }
@@ -58,7 +59,8 @@ int	main(int argc, char *argv[])
 	}
 	else
 	{
-		ft_putstr(ERROR_MESSAGE);
+		char *str = ERROR_MESSAGE;
+		ft_putstr(str);
 		exit(EXIT_FAILURE);
 	}
 	return (0);

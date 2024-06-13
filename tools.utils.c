@@ -12,8 +12,6 @@
 
 #include "fractol.h"
 
-
-
 int	ft_strncmp(char *s1, char *s2, int size)
 {
 	int	i;
@@ -24,7 +22,7 @@ int	ft_strncmp(char *s1, char *s2, int size)
 	return (s1[i] - s2[i]);
 }
 
-void	ft_putst(char *str)
+void	ft_putstr(char *str)
 {
 	while (*str != '\0')
 	{
