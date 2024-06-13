@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:17:57 by alama             #+#    #+#             */
-/*   Updated: 2024/06/03 22:23:01 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/13 10:21:46 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,52 @@
 
 void	set_image(t_data *data)
 {
-	int	p_bits;
-	int	l_bytes;
-	int	end;
 
-	data->buff_img = mlx_get_data_addr(data->img, &p_bits, &l_bytes, &end);
 }
 
-
-
-int	main(void)
+void	fract_init(t_fract *frac)
 {
-	t_data *data;
+	frac->mlx = mlx_init();
+	frac->err_out = 1;
+	if (!frac->mlx)
+	{
+		frac->err_out = 1;
+		out_prog(frac);
+	}
+	frac->win = mlx_new_window(frac->mlx, WIDTH, HEIGHT, frac->name);
+	if (!frac->win)
+	{
+		frac->err_out = 0;
+		out_prog(frac);
+	}
+	frac->img.ptr_img = mlx_new_image(frac->mlx, WIDTH, HEIGHT);
+	if (!frac->img.ptr_img)
+	{
+		frac->err_out = 0;
+		out_prog(frac);
+	}
+	frac->img.pixels_ptr = mlx_get_data_addr(frac->img.ptr_img,
+											&frac->img.bits_pp,
+											&frac->img.endian);
+	events_init(frac);
+}
 
-	data = malloc(sizeof(t_data));
-	if (!data)
-		return (1);
-	data->mlx = mlx_init();
-	data->w = 1020;
-	data->h = 980;
-//	mlx_get_screen_size(data->mlx, &data->w, &data->h);
-	data->win = mlx_new_window(data->mlx, data->w, data->h, "fract'ol");
-	data->img = mlx_new_image(data->mlx, data->w, data->h);
-	set_image(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	data->err_output = 0;
-	mlx_key_hook(data->win, &key_event, data);
-	mlx_hook(data->win, 17, 0, &out_prog, data);
-	mlx_loop(data->mlx);
+int	main(int argc, char *argv[])
+{ 
+	t_fract	data;
+
+	if (argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 10)
+			|| argc == 4 && !ft_strncmp(argv[1], "julia", 5))
+	{
+		data.name = argv[1];
+		fract_init(&data);
+	//	render(&data);
+		mlx_loop(data.mlx);
+	}
+	else
+	{
+		ft_putstr(ERROR_MESSAGE);
+		exit(EXIT_FAILURE);
+	}
 	return (0);
 }
