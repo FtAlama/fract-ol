@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:38:47 by alama             #+#    #+#             */
-/*   Updated: 2024/06/12 17:50:42 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/13 20:17:10 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <stdio.h>
+# include <unistd.h>
 
 # define ERROR_MESSAGE "type :\t\"mandelbrot\" or\n      \t\"julia int int\" ";
 
@@ -48,5 +49,6 @@ int		ft_strncmp(char *s1, char *s2, int size);
 void	ft_putstr(char *str);
 void	events_init(t_fract *frac);
 void	data_init(t_fract *frac);
+void	render(t_fract *frac);
 
 #endif

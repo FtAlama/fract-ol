@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:17:57 by alama             #+#    #+#             */
-/*   Updated: 2024/06/13 10:21:46 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/13 20:17:29 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int argc, char *argv[])
 	{
 		data.name = argv[1];
 		fract_init(&data);
-	//	render(&data);
+		render(&data);
 		mlx_loop(data.mlx);
 	}
 	else
