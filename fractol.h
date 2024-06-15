@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:38:47 by alama             #+#    #+#             */
-/*   Updated: 2024/06/13 20:17:10 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/15 18:29:22 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,17 @@
 # include <stdio.h>
 # include <unistd.h>
 
-# define ERROR_MESSAGE "type :\t\"mandelbrot\" or\n      \t\"julia int int\" ";
+# define ERROR_MESSAGE "type :\t\"mandelbrot\" or\n      \t\"julia int int\" "
 
-# define WIDTH	960
-# define HEIGHT	800
+# define WIDTH		960
+# define HEIGHT		800
+# define BLACK		0x000000
+# define WHITE		0xFFFFFF
+# define RED		0xFF0000
+# define GREEN		0x00FF00
+# define BLUE		0x0000FF
+# define HOT_PINK	0xFF66B2
+# define SUN		0x330000
 
 typedef struct s_img
 {
@@ -40,15 +47,27 @@ typedef struct s_fract
 	t_img	img;
 	char	*name;
 	int		err_out;
+	double	escape_value;
+	int		iterations_definition;
 }	t_fract;
 
-int		out_prog(t_fract *data);
-int		key_event(int keycode, t_fract *data);
-int		mouse_event(int button, int x, int y, t_fract *data);
-int		ft_strncmp(char *s1, char *s2, int size);
-void	ft_putstr(char *str);
-void	events_init(t_fract *frac);
-void	data_init(t_fract *frac);
-void	render(t_fract *frac);
+typedef struct s_complex
+{
+	double	real;
+	double	ima;
+}	t_complex;
+
+
+int			out_prog(t_fract *data);
+int			key_event(int keycode, t_fract *data);
+int			mouse_event(int button, int x, int y, t_fract *data);
+int			ft_strncmp(char *s1, char *s2, int size);
+void		ft_putstr(char *str);
+void		events_init(t_fract *frac);
+void		data_init(t_fract *frac);
+void		render(t_fract *frac);
+double		scale(double unscaled_num, double new_min, double new_max, double old_max);
+t_complex	square_complex(t_complex z);
+t_complex	sum_complex(t_complex z1, t_complex z2);
 
 #endif

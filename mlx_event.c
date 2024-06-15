@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:26:41 by alama             #+#    #+#             */
-/*   Updated: 2024/06/13 19:55:20 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/15 18:25:11 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int	out_prog(t_fract *data)
 		free(data->mlx);
 	}
 	if (data->err_out == 0)
+	{
+		printf("sucess close\n");
 		exit(EXIT_SUCCESS);
+	}
 	else if (data->err_out == 1)
 		perror("...Malloc allocation failed...\n");
 	exit(EXIT_FAILURE);
@@ -40,6 +43,6 @@ int	key_event(int keycode, t_fract *data)
 
 void	events_init(t_fract *frac)
 {
-	
-
+	mlx_hook(frac->win, 2, 0, &key_event, frac);
+	mlx_hook(frac->win, 17, 0, &out_prog, frac);
 }
