@@ -6,7 +6,7 @@
 #    By: alama <alama@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:41:06 by alama             #+#    #+#              #
-#    Updated: 2024/06/03 15:20:05 by alama            ###   ########.fr        #
+#    Updated: 2024/06/17 14:51:45 by alama            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,20 +16,20 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = main.c
+SRC = main.c math_utils.c mlx_event.c render.c tools.utils.c
 
 OBJ = $(SRC:.c=.o)
 
-LINK = -l -lmlx -framework OpenGL -framework AppKit
+LINK = -Lminilibx -lmlx -framework OpenGL -framework AppKit
 
 
 all : $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(SRC) -o $(NAME) $(CFLAGS) $(LINK)
+	$(CC) $(SRC) -o $(NAME) $(LINK)
 
 $(OBJ) :
-	$(CFLAGS) -c $(@:.o=.c) 
+	$(CC) $(CFLAGS) -c $(@:.o=.c) 
 
 clean :
 	rm -f $(OBJ)

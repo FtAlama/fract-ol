@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:38:47 by alama             #+#    #+#             */
-/*   Updated: 2024/06/15 18:29:22 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/17 17:23:42 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@
 # define BLUE		0x0000FF
 # define HOT_PINK	0xFF66B2
 # define SUN		0x330000
+# define BLUE_SKY	0xC1E7F7
+
+typedef	struct	s_limit
+{
+	double x;
+	double y;
+}	t_limit;
 
 typedef struct s_img
 {
@@ -49,6 +56,7 @@ typedef struct s_fract
 	int		err_out;
 	double	escape_value;
 	int		iterations_definition;
+	t_limit	limit;
 }	t_fract;
 
 typedef struct s_complex

@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:17:57 by alama             #+#    #+#             */
-/*   Updated: 2024/06/15 18:28:32 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/17 17:16:37 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 void	data_init(t_fract *frac)
 {
 	frac->escape_value = 4;
-	frac->iterations_definition = 1000;
+	frac->iterations_definition = 500;
+	frac->limit.x = 0.0;
+	frac->limit.y = 0.0;
 }
 
 void	fract_init(t_fract *frac)
@@ -51,8 +53,8 @@ int	main(int argc, char *argv[])
 {
 	t_fract	data;
 
-	if (argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 10)
-		|| argc == 4 && !ft_strncmp(argv[1], "julia", 5))
+	if ((argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 10))
+		|| (argc == 4 && !ft_strncmp(argv[1], "julia", 5)))
 	{
 		data.name = argv[1];
 		fract_init(&data);

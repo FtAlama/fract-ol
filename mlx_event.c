@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:26:41 by alama             #+#    #+#             */
-/*   Updated: 2024/06/15 18:25:11 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/17 17:25:48 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ int	key_event(int keycode, t_fract *data)
 {
 	if (keycode == 53)
 		out_prog(data);
+	printf("%d\n", keycode);
+	if (keycode == 124)
+		data->limit.x -= 0.5;
+	if (keycode == 123)
+		data->limit.x += 0.5;
+	if (keycode == 126)
+		data->limit.y -= 0.5;
+	if (keycode == 125)
+		data->limit.y += 0.5;
+	render(data);
 	return (0);
 }
 
