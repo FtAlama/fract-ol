@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:26:41 by alama             #+#    #+#             */
-/*   Updated: 2024/06/17 17:25:48 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/17 22:58:30 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ int	out_prog(t_fract *data)
 	return (0);
 }
 
+int	mouse_event(int button, int x, int y, t_fract *frac)
+{
+	printf("%d\n", button);
+	return (0);
+}
+
 int	key_event(int keycode, t_fract *data)
 {
 	if (keycode == 53)
@@ -47,6 +53,10 @@ int	key_event(int keycode, t_fract *data)
 		data->limit.y -= 0.5;
 	if (keycode == 125)
 		data->limit.y += 0.5;
+	if (keycode == 69)
+		data->iterations_definition += 10;
+	if (keycode == 78)
+		data->iterations_definition -= 10;
 	render(data);
 	return (0);
 }
@@ -54,5 +64,6 @@ int	key_event(int keycode, t_fract *data)
 void	events_init(t_fract *frac)
 {
 	mlx_hook(frac->win, 2, 0, &key_event, frac);
+	mlx_hook(frac->win, 4, 0, &mouse_event, frac);
 	mlx_hook(frac->win, 17, 0, &out_prog, frac);
 }
