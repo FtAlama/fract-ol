@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:26:41 by alama             #+#    #+#             */
-/*   Updated: 2024/06/18 15:33:47 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/18 17:01:24 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,15 @@ int	out_prog(t_fract *data)
 
 int	mouse_event(int button, int x, int y, t_fract *frac)
 {
-	if (button == 5)
-	{
-		frac->zoom *= 0.5;
-	}
 	if (button == 4)
 	{
-		frac->zoom *= 1.05;
+		frac->zoom *= 0.45;
 	}
+	if (button == 5)
+	{
+		frac->zoom *= 1.45;
+	}
+	printf("%d and %d\n", x, y);
 	render(frac);
 	return (0);
 }
@@ -54,13 +55,13 @@ int	key_event(int keycode, t_fract *data)
 		out_prog(data);
 	printf("%d\n", keycode);
 	if (keycode == 124)
-		data->limit.x -= 0.5;
+		data->limit.x -= (0.5 * data->zoom);
 	if (keycode == 123)
-		data->limit.x += 0.5;
+		data->limit.x += (0.5 * data->zoom);
 	if (keycode == 126)
-		data->limit.y -= 0.5;
+		data->limit.y -= (0.5 * data->zoom);
 	if (keycode == 125)
-		data->limit.y += 0.5;
+		data->limit.y += (0.5 * data->zoom);
 	if (keycode == 69)
 		data->iterations_definition += 10;
 	if (keycode == 78)
