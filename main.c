@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:17:57 by alama             #+#    #+#             */
-/*   Updated: 2024/06/17 21:11:22 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/18 15:29:24 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	data_init(t_fract *frac)
 	frac->iterations_definition = 300;
 	frac->limit.x = 0.0;
 	frac->limit.y = 0.0;
+	frac->zoom = 1.0;
 }
 
 void	fract_init(t_fract *frac)

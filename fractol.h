@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:38:47 by alama             #+#    #+#             */
-/*   Updated: 2024/06/17 17:23:42 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/18 15:28:05 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_fract
 	double	escape_value;
 	int		iterations_definition;
 	t_limit	limit;
+	double	zoom;
 }	t_fract;
 
 typedef struct s_complex

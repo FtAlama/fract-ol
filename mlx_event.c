@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:26:41 by alama             #+#    #+#             */
-/*   Updated: 2024/06/17 22:58:30 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/18 15:33:47 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,15 @@ int	out_prog(t_fract *data)
 
 int	mouse_event(int button, int x, int y, t_fract *frac)
 {
-	printf("%d\n", button);
+	if (button == 5)
+	{
+		frac->zoom *= 0.5;
+	}
+	if (button == 4)
+	{
+		frac->zoom *= 1.05;
+	}
+	render(frac);
 	return (0);
 }
 
