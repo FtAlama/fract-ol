@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:15:58 by alama             #+#    #+#             */
-/*   Updated: 2024/06/19 17:17:49 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/19 22:07:23 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	handle_pixel(int x, int y, t_fract *frac)
 	i = 0;
 	c.real = (scale(x, -2, 2, WIDTH) * frac->zoom) + frac->limit.x;
 	c.ima = (scale(y, 2, -2, HEIGHT) * frac->zoom) + frac->limit.y;
-	while (i < frac->iterations_definition)
+	while (i < frac->iterations_definition && (x < WIDTH && y < HEIGHT))
 	{
 		z = sum_complex(square_complex(z), c);
 		if ((z.real * z.real) + (z.ima * z.ima) > frac->escape_value)
@@ -43,7 +43,8 @@ void	handle_pixel(int x, int y, t_fract *frac)
 		}
 		i++;
 	}
-	my_pixel_put(x, y, &frac->img, BLUE_SKY);
+	if (x <= WIDTH && y <= HEIGHT)
+		my_pixel_put(x, y, &frac->img, BLUE_SKY);
 }
 
 void	render(t_fract *frac)
