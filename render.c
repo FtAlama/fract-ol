@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:15:58 by alama             #+#    #+#             */
-/*   Updated: 2024/06/19 22:07:23 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/19 23:21:15 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,20 @@ static void	my_pixel_put(int x, int y, t_img *img, int color)
 	*(unsigned int *)(img->pixels_ptr + offset) = color;
 }
 
+static	void mandel_or_julia(t_complex *z, t_complex *c, t_fract *frac)
+{
+	if (!ft_strncmp(frac->name, "julia", 5))
+	{
+		c->real = frac->julia_x;
+		c->ima = frac->julia_y;
+	}
+	else
+	{
+		c->real = z->real;
+		c->ima = z->ima;
+	}
+}
+
 void	handle_pixel(int x, int y, t_fract *frac)
 {
 	t_complex	z;
@@ -27,11 +41,10 @@ void	handle_pixel(int x, int y, t_fract *frac)
 	int			i;
 	int			color;
 
-	z.real = 0.0;
-	z.ima = 0.0;
 	i = 0;
-	c.real = (scale(x, -2, 2, WIDTH) * frac->zoom) + frac->limit.x;
-	c.ima = (scale(y, 2, -2, HEIGHT) * frac->zoom) + frac->limit.y;
+	z.real = (scale(x, -2, 2, WIDTH) * frac->zoom) + frac->limit.x;
+	z.ima = (scale(y, 2, -2, HEIGHT) * frac->zoom) + frac->limit.y;
+	mandel_or_julia(&z, &c, frac);
 	while (i < frac->iterations_definition && (x < WIDTH && y < HEIGHT))
 	{
 		z = sum_complex(square_complex(z), c);
@@ -43,8 +56,7 @@ void	handle_pixel(int x, int y, t_fract *frac)
 		}
 		i++;
 	}
-	if (x <= WIDTH && y <= HEIGHT)
-		my_pixel_put(x, y, &frac->img, BLUE_SKY);
+	my_pixel_put(x, y, &frac->img, BLUE_SKY);
 }
 
 void	render(t_fract *frac)

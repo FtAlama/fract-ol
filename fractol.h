@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:38:47 by alama             #+#    #+#             */
-/*   Updated: 2024/06/18 15:28:05 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/19 23:04:00 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct s_fract
 	int		iterations_definition;
 	t_limit	limit;
 	double	zoom;
+	double	julia_x;
+	double	julia_y;
 }	t_fract;
 
 typedef struct s_complex
@@ -78,5 +80,6 @@ void		render(t_fract *frac);
 double		scale(double unscaled_num, double new_min, double new_max, double old_max);
 t_complex	square_complex(t_complex z);
 t_complex	sum_complex(t_complex z1, t_complex z2);
+double		atodbl(char *s);
 
 #endif

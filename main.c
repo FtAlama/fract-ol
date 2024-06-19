@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:17:57 by alama             #+#    #+#             */
-/*   Updated: 2024/06/19 15:32:38 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/19 23:17:21 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ int	main(int argc, char *argv[])
 	if ((argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 10))
 		|| (argc == 4 && !ft_strncmp(argv[1], "julia", 5)))
 	{
+		if (!ft_strncmp(argv[1], "julia", 5))
+		{
+			data.julia_x = atodbl(argv[2]);
+			data.julia_y = atodbl(argv[3]);
+		}
 		data.name = argv[1];
 		fract_init(&data);
 		render(&data);

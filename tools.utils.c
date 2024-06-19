@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:13:29 by alama             #+#    #+#             */
-/*   Updated: 2024/06/15 15:52:58 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/19 23:15:33 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,36 @@ void	ft_putstr(char *str)
 		write(1, str, 1);
 		str++;
 	}
+}
+
+double	atodbl(char *s)
+{
+	long	i_part;
+	double	frac_part;
+	double	pow;
+	int		sign;
+
+	i_part = 0;
+	frac_part = 0;
+	sign = 1;
+	pow = 1;
+	while ((*s >= 9 && *s <= 13) || 32 == *s)
+		s++;
+	while (*s == '+' || *s == '-')
+	{
+		if (*s == '-')
+			sign *= -1;
+		s++;
+	}
+	while (*s != '.' && *s)
+		i_part = (i_part * 10) + (*s++ - '0');
+	if (*s == '.')
+		s++;
+	while (*s)
+	{
+		pow /= 10;
+		frac_part = frac_part + (*s - '0') * pow;
+		s++;
+	}
+	return ((i_part * frac_part) * sign);
 }
