@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:13:29 by alama             #+#    #+#             */
-/*   Updated: 2024/06/19 23:15:33 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/20 18:17:00 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,8 @@ double	atodbl(char *s)
 		s++;
 	while (*s == '+' || *s == '-')
 	{
-		if (*s == '-')
-			sign *= -1;
-		s++;
+		if (*s++ == '-')
+			sign = -sign;
 	}
 	while (*s != '.' && *s)
 		i_part = (i_part * 10) + (*s++ - '0');
@@ -83,5 +82,7 @@ double	atodbl(char *s)
 		frac_part = frac_part + (*s - '0') * pow;
 		s++;
 	}
-	return ((i_part * frac_part) * sign);
+	long l = (i_part + frac_part) * sign;
+	printf("%ld\n", l);
+	return (l);
 }
