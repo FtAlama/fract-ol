@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:26:41 by alama             #+#    #+#             */
-/*   Updated: 2024/06/20 21:31:25 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/22 16:56:17 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,18 @@ int	mouse_event(int button, int x, int y, t_fract *frac)
 	printf("%f, %f \n", dx, dy);
 	if (button == 4)
 	{
-		frac->zoom *= 0.45;
+		//frac->zoom *= 0.45;
+		zoom_and_render(frac, ZOOM_FACTOR_OUT, x, y);
 	}
 	if (button == 5)
 	{
-		frac->zoom *= 1.45;
+	//	frac->zoom *= 1.45;
 		//frac->iterations_definition += 10;
-		frac->limit.x = dx;
-		frac->limit.y = dy;
+	//	frac->limit.x = dx;
+	//	frac->limit.y = dy;
+		zoom_and_render(frac, ZOOM_FACTOR_IN, x, y);
 	}
-	render(frac);
+	//render(frac);
 	return (0);
 }
 

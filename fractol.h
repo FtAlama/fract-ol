@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:38:47 by alama             #+#    #+#             */
-/*   Updated: 2024/06/19 23:04:00 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/22 17:00:32 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 # define ERROR_MESSAGE "type :\t\"mandelbrot\" or\n      \t\"julia int int\" "
 
-# define WIDTH		960
-# define HEIGHT		800
+# define WIDTH		800
+# define HEIGHT		600
 # define BLACK		0x000000
 # define WHITE		0xFFFFFF
 # define RED		0xFF0000
@@ -31,6 +31,8 @@
 # define HOT_PINK	0xFF66B2
 # define SUN		0x330000
 # define BLUE_SKY	0xC1E7F7
+# define ZOOM_FACTOR_IN	1.2
+# define ZOOM_FACTOR_OUT	0.8
 
 typedef	struct	s_limit
 {
@@ -68,7 +70,6 @@ typedef struct s_complex
 	double	ima;
 }	t_complex;
 
-
 int			out_prog(t_fract *data);
 int			key_event(int keycode, t_fract *data);
 int			mouse_event(int button, int x, int y, t_fract *data);
@@ -81,5 +82,8 @@ double		scale(double unscaled_num, double new_min, double new_max, double old_ma
 t_complex	square_complex(t_complex z);
 t_complex	sum_complex(t_complex z1, t_complex z2);
 double		atodbl(char *s);
+void		zoom_and_render(t_fract *frac, double zoom_factor, int x, int y);
+void		zoom_in(t_fract *frac, double zoom_factor, int x, int y);
+void		render_region(t_fract *frac, int start_x, int start_y, int end_x, int end_y);
 
 #endif
