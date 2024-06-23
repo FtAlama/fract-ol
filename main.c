@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:17:57 by alama             #+#    #+#             */
-/*   Updated: 2024/06/22 17:04:13 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/22 19:54:01 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	data_init(t_fract *frac)
 {
 	frac->escape_value = 4;
-	frac->iterations_definition = 300;
+	frac->iterations_definition = 50;
 	frac->limit.x = -0.5;
 	frac->limit.y = 0.0;
 	frac->zoom = 1.0;

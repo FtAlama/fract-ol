@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:15:58 by alama             #+#    #+#             */
-/*   Updated: 2024/06/22 17:03:05 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/22 19:53:09 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,12 @@ void	render_region(t_fract *frac, int start_x, int start_y, int end_x, int end_y
 
 void	zoom_and_render(t_fract *frac, double zoom_factor, int x, int y)
 {
+	int	cap;
+
+	cap = frac->iterations_definition;
+	frac->iterations_definition = 50;
 	zoom_in(frac, zoom_factor, x, y);
+	render_region(frac, 0, 0, WIDTH, HEIGHT);
+	frac->iterations_definition = cap;
 	render_region(frac, 0, 0, WIDTH, HEIGHT);
 }

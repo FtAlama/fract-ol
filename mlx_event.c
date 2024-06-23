@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:26:41 by alama             #+#    #+#             */
-/*   Updated: 2024/06/22 16:56:17 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/22 19:56:01 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int	mouse_event(int button, int x, int y, t_fract *frac)
 	{
 	//	frac->zoom *= 1.45;
 		//frac->iterations_definition += 10;
-	//	frac->limit.x = dx;
-	//	frac->limit.y = dy;
+		frac->limit.x = dx;
+		frac->limit.y = dy;
 		zoom_and_render(frac, ZOOM_FACTOR_IN, x, y);
 	}
 	//render(frac);
