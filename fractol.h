@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:38:47 by alama             #+#    #+#             */
-/*   Updated: 2024/06/22 19:17:07 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/24 11:35:13 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "minilibx/mlx.h"
 # include <stdlib.h>
-# include <stdio.h>
 # include <stdio.h>
 # include <unistd.h>
 

@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:15:58 by alama             #+#    #+#             */
-/*   Updated: 2024/06/22 19:53:09 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/24 19:11:26 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	handle_pixel(int x, int y, t_fract *frac)
         }
 
         z.ima = 2 * z.real * z.ima + c.ima;
-        z.real = z_real_squared - z_ima_squared + c.real;
+       z.real = z_real_squared - z_ima_squared + c.real;
 
         i++;
     }
