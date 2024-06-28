@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:15:58 by alama             #+#    #+#             */
-/*   Updated: 2024/06/24 19:11:26 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/28 18:53:07 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ static void	my_pixel_put(int x, int y, t_img *img, int color)
 	offset = (y * img->line_len) + (x * (img->bits_pp / 8));
 	*(unsigned int *)(img->pixels_ptr + offset) = color;
 }
-
-/**
+/*
 static	void mandel_or_julia(t_complex *z, t_complex *c, t_fract *frac)
 {
 	if (!ft_strncmp(frac->name, "julia", 5))
@@ -37,7 +36,7 @@ static	void mandel_or_julia(t_complex *z, t_complex *c, t_fract *frac)
 */
 void	handle_pixel(int x, int y, t_fract *frac)
 {
-	/**
+	/*
 	t_complex	z;
 	t_complex	c;
 	int			i;
@@ -66,11 +65,13 @@ void	handle_pixel(int x, int y, t_fract *frac)
     int color;
     double z_real_squared;
     double z_ima_squared;
+	double	ratio;
 
+	ratio = (double) WIDTH / HEIGHT;
     z.real = 0.0;
     z.ima = 0.0;
     i = 0;
-    c.real = (scale(x, -2, 2, WIDTH) * frac->zoom) + frac->limit.x;
+    c.real = (scale(x, -2 * ratio, 2 * ratio, WIDTH) * frac->zoom) + frac->limit.x;
     c.ima = (scale(y, 2, -2, HEIGHT) * frac->zoom) + frac->limit.y;
 
     while (i < frac->iterations_definition) {
@@ -78,7 +79,7 @@ void	handle_pixel(int x, int y, t_fract *frac)
         z_ima_squared = z.ima * z.ima;
 
         if (z_real_squared + z_ima_squared > frac->escape_value) {
-            color = scale(i, BLACK, WHITE, frac->iterations_definition);
+            color = scale(i, WHITE, BLACK, frac->iterations_definition);
             my_pixel_put(x, y, &frac->img, color);
             return;
         }
@@ -88,8 +89,7 @@ void	handle_pixel(int x, int y, t_fract *frac)
 
         i++;
     }
-
-    my_pixel_put(x, y, &frac->img, BLUE_SKY);
+    my_pixel_put(x, y, &frac->img, BLACK);
 }
 
 void	render(t_fract *frac)

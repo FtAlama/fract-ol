@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:38:47 by alama             #+#    #+#             */
-/*   Updated: 2024/06/24 11:35:13 by alama            ###   ########.fr       */
+/*   Updated: 2024/06/28 17:44:53 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 
 # define ERROR_MESSAGE "type :\t\"mandelbrot\" or\n      \t\"julia int int\" "
 
-# define WIDTH		960
-# define HEIGHT		800
+//# define WIDTH		960
+# define WIDTH		1280
+//# define HEIGHT		800
+# define HEIGHT		720
 # define BLACK		0x000000
 # define WHITE		0xFFFFFF
 # define RED		0xFF0000
