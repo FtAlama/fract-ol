@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:01:15 by alama             #+#    #+#             */
-/*   Updated: 2024/07/20 20:28:22 by alama            ###   ########.fr       */
+/*   Updated: 2024/07/23 22:32:24 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,19 @@ static void	handle_pixel(int x, int y, t_mlx *data)
 	t_complex	c;
 	int			i;
 	int			color;
-	double		ratio;
-	double		z_x_temp;
+	t_complex	tmp;
 
-	ratio = (double)WIDTH / HEIGHT;
+	tmp.x = (double)WIDTH / HEIGHT;
 	i = 0;
-	z.x = map(x, -2 * ratio, 2 * ratio, WIDTH) * data->frac.zoom;
+	z.x = map(x, -2 * tmp.x, 2 * tmp.x, WIDTH) * data->frac.zoom;
 	z.x += data->frac.limit_x;
 	z.y = (map(y, 2, -2, HEIGHT) * data->frac.zoom) + data->frac.limit_y;
 	what_frac(&z, &c, data);
 	while (i++ < data->frac.ite_def)
 	{
-		z_x_temp = z.x * z.x - z.y * z.y + c.x;
-        z.y = 2 * z.x * z.y + c.y;
-        z.x = z_x_temp;
+		tmp.y = z.x * z.x - z.y * z.y + c.x;
+		z.y = 2 * z.x * z.y + c.y;
+		z.x = tmp.y;
 		if ((z.x * z.x) + (z.y * z.y) > data->frac.escape_value)
 		{
 			color = map(i, data->palette[data->p1], data->palette[data->p2], data->frac.ite_def);

@@ -6,7 +6,7 @@
 #    By: alama <alama@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/20 19:05:27 by alama             #+#    #+#              #
-#    Updated: 2024/07/22 19:52:03 by alama            ###   ########.fr        #
+#    Updated: 2024/07/23 22:13:40 by alama            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,14 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = src/main.c src/mlx_event.c src/fractol.c src/render.c src/zoom.c src/lorenz.c
+SRC = src/main.c src/mlx_event.c src/fractol.c src/render.c src/zoom.c src/lorenz.c \
+      src/event_lorenz.c
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 SRC_DIR = src
 
-OBJ_DIR = obj
+OBJ_DIR = .cache
 
 PRINTF = ./printf/libftprintf.a
 

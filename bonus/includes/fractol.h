@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 19:16:01 by alama             #+#    #+#             */
-/*   Updated: 2024/07/22 19:47:25 by alama            ###   ########.fr       */
+/*   Updated: 2024/07/23 18:23:17 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@
 # define B		28
 # define C		2.66666
 
+typedef struct s_lorenz
+{
+	double	rx;
+	double	ry;
+	double	tx;
+	double	ty;
+}	t_lorenz;
+
 typedef struct s_frac
 {
 	int		escape_value;
@@ -55,13 +63,6 @@ typedef struct s_img
 	int		line_len;
 }	t_img;
 
-typedef	struct	s_dpp
-{
-	double	x;
-	double	y;
-	double	z;
-}	t_dpp;
-
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -75,7 +76,8 @@ typedef struct s_mlx
 	int		p1;
 	int		p2;
 	int		p3;
-	t_dpp	d;
+	t_complex	d;
+	t_lorenz	lorenz;
 }	t_mlx;
 
 int		out_prog(t_mlx *data);
@@ -87,5 +89,6 @@ void	zoom_and_render(t_mlx *data, double zoom_factor, int x, int y);
 int		mouse_press(int button, int x, int y, t_mlx *data);
 void	zoom_in(t_mlx *data, double zoom_factor, int x, int y);
 void	lorenz_render(t_mlx *data);
+void	lorenz_key_event(int keycode, t_mlx *data);
 
 #endif

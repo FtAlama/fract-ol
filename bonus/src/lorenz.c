@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:13:55 by alama             #+#    #+#             */
-/*   Updated: 2024/07/22 20:26:29 by alama            ###   ########.fr       */
+/*   Updated: 2024/07/23 18:13:29 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	my_pixel_lorenz(int x, int y, t_img *img, int color, int i)
 	}
 }
 
-static void calcule_lorenz(t_dpp *point, t_mlx *data)
+static void calcule_lorenz(t_complex *point, t_mlx *data)
 {
 	double	dt;
 	double	dx;
@@ -35,11 +35,11 @@ static void calcule_lorenz(t_dpp *point, t_mlx *data)
 	int		i;
 
 	dt = 0.01;
-	i = 0;
+	i = -1;
 	y = 0;
 	z = 0;
 	x = 0.1;
-	while (i < data->frac.ite_def)
+	while (++i < data->frac.ite_def)
 	{
 		dx = (A * (y - x)) * dt;
 		dy = (x * (B - z) - y) * dt;
@@ -50,11 +50,10 @@ static void calcule_lorenz(t_dpp *point, t_mlx *data)
 		point[i].x = x;
 		point[i].y = y;
 		point[i].z = z;
-		i++;
 	}
 }
 
-static void	find_bounds(t_dpp *points, int num_points, t_dpp *min_bounds, t_dpp *max_bounds)
+static void	find_bounds(t_complex *points, int num_points, t_complex *min_bounds, t_complex *max_bounds)
 {
 	int	i;
 
@@ -105,20 +104,19 @@ static void	clear_image(t_img *img, int color)
 
 void	lorenz_render(t_mlx *data)
 {
-	t_dpp	points[data->frac.ite_def];
-	double	angle_x;
-	double	angle_y;
+	t_complex	*points;
 	int		i;
 	int		x;
 	int		y;
 	double	scale_x;
 	double	scale_y;
 	double	scale;
-	t_dpp	min_bounds;
-	t_dpp	max_bounds;
+	t_complex	min_bounds;
+	t_complex	max_bounds;
 	double	offset_x;
 	double	offset_y;
 
+	points = malloc(sizeof(t_complex) * data->frac.ite_def);
 	clear_image(&data->img, WHITE);
 	calcule_lorenz(points, data);
 	find_bounds(points, data->frac.ite_def, &min_bounds, &max_bounds);
@@ -133,14 +131,15 @@ void	lorenz_render(t_mlx *data)
 	i = 0;
 	x = 0;
 	y = 0;
-	angle_x = M_PI / 4;
-	angle_y = M_PI / 4;
 	while (i < data->frac.ite_def)
 	{
+		translate_point(&points[i], data->d.tx, data->d.ty, data->d.tz);
+		rotate_point(&points[i], data->d.rx, data->d.ry);
 		x = (int)(points[i].x * scale + offset_x);
 		y = (int)(points[i].y * scale + offset_y);
 		my_pixel_lorenz(x, y, &data->img, data->palette[data->p3], i);
 		i++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img.ptr_img, 0, 0);
+	free(points);
 }

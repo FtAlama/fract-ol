@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:03:54 by alama             #+#    #+#             */
-/*   Updated: 2024/07/20 15:55:58 by alama            ###   ########.fr       */
+/*   Updated: 2024/07/23 22:21:53 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,17 @@ static	void	ft_set_color(t_mlx *data)
 	data->p3 = 1;
 }
 
+static void	ft_set_lorenz(t_mlx *data)
+{
+	data->frac.ite_def = 100;
+	data->d.rx = 0;
+	data->d.ry = 0;
+	data->d.tx = 0;
+	data->d.tz = 0;
+	data->d.ty = 0;
+	lorenz_render(data);
+}
+
 void	frac_init(t_mlx *data)
 {
 	data->frac.escape_value = 4;
@@ -64,10 +75,7 @@ void	frac_init(t_mlx *data)
 	data->d.y = 0;
 	data->d.z = 0;
 	if (data->nb_name == 2)
-	{
-		data->frac.ite_def = 100;
-		lorenz_render(data);
-	}
+		ft_set_lorenz(data);
 	else
 	{
 		data->frac.ite_def = 30;
