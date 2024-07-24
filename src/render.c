@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:01:15 by alama             #+#    #+#             */
-/*   Updated: 2024/07/24 17:25:23 by alama            ###   ########.fr       */
+/*   Updated: 2024/07/24 23:53:56 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,17 @@ void	render(t_mlx *data)
 	int	x;
 	int	y;
 
-	if (data->nb_name == 2)
-		lorenz_render(data);
-	else
+	y = 0;
+	while (y < HEIGHT)
 	{
-		y = 0;
-		while (y < HEIGHT)
+		x = 0;
+		while (x < WIDTH)
 		{
-			x = 0;
-			while (x < WIDTH)
-			{
-				handle_pixel(x, y, data);
-				x++;
-			}
-			y++;
+			handle_pixel(x, y, data);
+			x++;
 		}
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->img.ptr_img, 0, 0);
+		y++;
 	}
+	mlx_put_image_to_window(data->mlx, data->win,
+		data->img.ptr_img, 0, 0);
 }

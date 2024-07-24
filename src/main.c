@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 19:15:05 by alama             #+#    #+#             */
-/*   Updated: 2024/07/24 21:51:23 by alama            ###   ########.fr       */
+/*   Updated: 2024/07/24 23:57:57 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,13 @@
 
 static void	window_set(t_mlx *data)
 {
-	int	width;
-	int	height;
-
-	if (data->nb_name == 2)
-	{
-		width = WIDTH_L;
-		height = HEIGHT_L;
-	}
-	else
-	{
-		width = WIDTH;
-		height = HEIGHT;
-	}
-	data->win = mlx_new_window(data->mlx, width, height, data->name);
+	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, data->name);
 	if (!data->win)
 	{
 		data->err_out = 1;
 		out_prog(data);
 	}
-	data->img.ptr_img = mlx_new_image(data->mlx, width, height);
+	data->img.ptr_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!data->img.ptr_img)
 	{
 		data->err_out = 1;
@@ -78,13 +65,10 @@ int	main(int argc, char *argv[])
 	t_mlx	data;
 
 	if ((argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 10))
-		|| ((argc == 4 || argc == 2) && !ft_strncmp(argv[1], "julia", 5))
-		|| (argc == 2 && !ft_strncmp(argv[1], "lorenz", 6)))
+		|| ((argc == 4 || argc == 2) && !ft_strncmp(argv[1], "julia", 5)))
 	{
 		if (!ft_strncmp(argv[1], "julia", 5))
 			if_is_julia(&data, argv[2], argv[3], argc);
-		else if (!ft_strncmp(argv[1], "lorenz", 6))
-			data.nb_name = 2;
 		else
 			data.nb_name = 0;
 		data.name = argv[1];
@@ -95,7 +79,6 @@ int	main(int argc, char *argv[])
 	else
 	{
 		ft_printf(ERROR_MESSAGE);
-		ft_printf(" or\n\t\"lorenz\"\n");
 		exit(EXIT_FAILURE);
 	}
 	return (0);
