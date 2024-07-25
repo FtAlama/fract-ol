@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 11:13:22 by alama             #+#    #+#             */
-/*   Updated: 2024/07/24 23:55:44 by alama            ###   ########.fr       */
+/*   Updated: 2024/07/25 21:21:46 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ static void	key_color(int keycode, t_mlx *data)
 
 static int	key_event(int keycode, t_mlx *data)
 {
-	ft_printf("%d\n", keycode);
 	if (keycode == 15)
 		frac_init(data);
 	if (keycode == 53)
@@ -84,7 +83,6 @@ static int	key_event(int keycode, t_mlx *data)
 
 static int	mouse_event(int button, int x, int y, t_mlx *data)
 {
-	ft_printf("%d %d\n", x, y);
 	if (button == 4)
 		zoom_in(data, 1.3, x, y);
 	if (button == 5)

@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 11:13:22 by alama             #+#    #+#             */
-/*   Updated: 2024/07/24 19:15:38 by alama            ###   ########.fr       */
+/*   Updated: 2024/07/25 21:20:19 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,8 @@
 
 int	out_prog(t_mlx *data)
 {
-	if (data->img.ptr_img)
-		mlx_destroy_image(data->mlx, data->img.ptr_img);
 	if (data->win)
-	{
-		mlx_clear_window(data->mlx, data->win);
 		mlx_destroy_window(data->mlx, data->win);
-	}
 	if (data->mlx)
 		free(data->mlx);
 	if (data->err_out == 0)
@@ -58,7 +53,6 @@ static void	key_color(int keycode, t_mlx *data)
 
 static int	key_event(int keycode, t_mlx *data)
 {
-	ft_printf("%d\n", keycode);
 	if (data->nb_name == 2)
 		lorenz_key_event(keycode, data);
 	if (keycode == 15)
@@ -86,7 +80,6 @@ static int	key_event(int keycode, t_mlx *data)
 
 static int	mouse_event(int button, int x, int y, t_mlx *data)
 {
-	ft_printf("%d %d\n", x, y);
 	if (button == 4)
 		zoom_in(data, 1.3, x, y);
 	if (button == 5)
