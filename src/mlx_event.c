@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 11:13:22 by alama             #+#    #+#             */
-/*   Updated: 2024/07/25 21:21:46 by alama            ###   ########.fr       */
+/*   Updated: 2024/07/30 13:22:12 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ static void	key_color(int keycode, t_mlx *data)
 
 static int	key_event(int keycode, t_mlx *data)
 {
+	if (data->nb_name == 2)
+		lorenz_key_event(keycode, data);
 	if (keycode == 15)
 		frac_init(data);
 	if (keycode == 53)
@@ -70,9 +72,9 @@ static int	key_event(int keycode, t_mlx *data)
 		data->frac.limit_y -= (0.5 * data->frac.zoom);
 	if (keycode == 126 || keycode == 13)
 		data->frac.limit_y += (0.5 * data->frac.zoom);
-	if (keycode == 69)
+	if (keycode == 69 || keycode == 24)
 		data->frac.ite_def += 10;
-	if (keycode == 78)
+	if (keycode == 78 || keycode == 27)
 		if (data->frac.ite_def > 10)
 			data->frac.ite_def -= 10;
 	if (keycode == 8 || keycode == 9 || keycode == 11)

@@ -6,7 +6,7 @@
 /*   By: alama <alama@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 19:16:01 by alama             #+#    #+#             */
-/*   Updated: 2024/07/24 23:50:54 by alama            ###   ########.fr       */
+/*   Updated: 2024/07/24 21:58:27 by alama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,30 @@
 # include "color.h"
 
 # define ERROR_MESSAGE "type :\t\"mandelbrot\" or\n      \t\"julia int int\""
+
 # define WIDTH_L	1280
 # define HEIGHT_L	720
+
+//# define WIDTH	720
+//# define HEIGHT	580
+
 # define WIDTH	580
 # define HEIGHT	430
+
 # define A		10
 # define B		28
 # define C		2.66666
+
+typedef struct s_lorenz
+{
+	double		scale_x;
+	double		scale_y;
+	double		scale;
+	t_complex	min_bounds;
+	t_complex	max_bounds;
+	double		offset_x;
+	double		offset_y;
+}	t_lorenz;
 
 typedef struct s_frac
 {
@@ -73,5 +90,8 @@ void	what_frac(t_complex *z, t_complex *c, t_mlx *data);
 void	zoom_and_render(t_mlx *data, double zoom_factor, int x, int y);
 int		mouse_press(int button, int x, int y, t_mlx *data);
 void	zoom_in(t_mlx *data, double zoom_factor, int x, int y);
+void	lorenz_render(t_mlx *data);
+void	lorenz_key_event(int keycode, t_mlx *data);
+void	step_up_lorenz(t_lorenz *lo, t_mlx *data);
 
 #endif
